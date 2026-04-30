@@ -1,51 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charSet="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
-    <!-- ========== STANDARD META TAGS ========== -->
-    <title>Maryam - Connect & Chat</title>
-    <meta name="description" content="Join Maryam in a friendly, engaging chat experience. Share moments and connect instantly." />
+    <title>Maryam - Let's Connect & Chat!</title>
+    <meta name="description" content="Join Maryam for a friendly chat. Click to start conversation!">
     
-    <!-- ========== OPEN GRAPH / FACEBOOK PREVIEW META TAGS ========== -->
-    <!-- Essential for link preview on Facebook, WhatsApp, LinkedIn, etc. -->
-    <meta property="og:title" content="Maryam – Let's Connect & Chat!" />
-    <meta property="og:description" content="Click to start a conversation with Maryam. Friendly, warm, and open to meeting new people." />
-    <meta property="og:image" content="https://github.com/pak-not-found/newvideo/blob/main/661719226_122103693266922091_3608887434749134826_n.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://xnxnxxvideo.vercel.app/page1" />
-    <meta property="og:site_name" content="Maryam Chat Room" />
+    <!-- ========== FACEBOOK OPEN GRAPH TAGS - CORRECT RAW LINK ========== -->
+    <meta property="og:title" content="Maryam - Let's Connect & Chat!">
+    <meta property="og:description" content="✨ Click here to start chatting with Maryam. Friendly and welcoming! ✨">
     
-    <!-- ========== TWITTER CARD (optional but improves sharing) ========== -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Maryam – Let's Connect & Chat!" />
-    <meta name="twitter:description" content="Click to start a conversation with Maryam. Friendly, warm, and open to meeting new people." />
-    <meta name="twitter:image" content="https://github.com/pak-not-found/newvideo/blob/main/661719226_122103693266922091_3608887434749134826_n.jpg" />
+    <!-- ✅✅✅ YAHI SAHI RAW LINK HAI ✅✅✅ -->
+    <meta property="og:image" content="https://raw.githubusercontent.com/pak-not-found/newvideo/main/661719226_122103693266922091_3608887434749134826_n.jpg">
+    <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/pak-not-found/newvideo/main/661719226_122103693266922091_3608887434749134826_n.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://newvideo-delta.vercel.app/">
+    <meta property="og:site_name" content="Maryam Chat">
+    <meta property="og:locale" content="en_US">
     
-    <!-- Preload the main preview image for faster rendering -->
-    <link rel="preload" as="image"
-        href="https://github.com/pak-not-found/newvideo/blob/main/661719226_122103693266922091_3608887434749134826_n.jpg" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Maryam - Let's Connect & Chat!">
+    <meta name="twitter:description" content="Click here to start chatting with Maryam!">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/pak-not-found/newvideo/main/661719226_122103693266922091_3608887434749134826_n.jpg">
     
-    <!-- CSS styles (minimal + fullscreen experience) -->
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            user-select: none; /* avoid accidental text selection on image */
         }
         
         body {
-            background: #000000;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
         
         main {
@@ -54,154 +50,122 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #0a0a0a;
+            padding: 20px;
         }
         
-        /* Fullscreen image link wrapper */
         .fullscreen-link {
             display: block;
             width: 100%;
             height: 100%;
+            max-width: 500px;
+            max-height: 500px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        
+        .fullscreen-link:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
         }
         
         .fullscreen-img {
             width: 100%;
             height: 100%;
-            object-fit: cover;          /* covers entire screen, maintains aspect ratio crop */
+            object-fit: cover;
             object-position: center;
             display: block;
-            transition: transform 0.3s ease, filter 0.2s;
         }
         
-        /* subtle hover effect only on non-touch devices */
-        @media (hover: hover) {
-            .fullscreen-img:hover {
-                filter: brightness(1.02);
-                transform: scale(1.002);
-            }
-        }
-        
-        /* Optional overlay protection / subtle gradient for better readability if needed */
-        .gradient-overlay {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
-            pointer-events: none;
-            z-index: 2;
-        }
-        
-        /* micro tip for mobile users (disappears after tap) optional */
         .tap-hint {
             position: fixed;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            color: rgba(255,255,255,0.7);
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
             font-size: 14px;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(8px);
-            padding: 8px 16px;
-            width: fit-content;
-            margin: 0 auto;
-            border-radius: 40px;
             font-weight: 500;
+            z-index: 100;
             pointer-events: none;
-            z-index: 10;
-            font-family: inherit;
-            transition: opacity 1s;
-            opacity: 0.8;
+            white-space: nowrap;
+            animation: pulse 2s infinite;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.8;
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1.05);
+            }
         }
         
         @media (max-width: 640px) {
             .tap-hint {
                 font-size: 12px;
-                bottom: 16px;
-                padding: 6px 14px;
+                padding: 8px 16px;
+                bottom: 20px;
+                white-space: nowrap;
+            }
+            
+            .fullscreen-link {
+                max-width: 350px;
+                max-height: 350px;
             }
         }
     </style>
-    
-    <!-- Analytics script (kept as original) -->
-    <script defer data-domain="xnxnxxvideo.vercel.app/wUTe7M" src="https://api.publytics.net/js/script.js"></script>
 </head>
-
 <body>
     <main>
-        <!-- 
-            The main clickable area: image wrapped in an anchor tag.
-            Destination link: "https://newvideo.motox3m.co.uk/chat/maryam/"
-            Full-screen image preview that also acts as a CTA.
-            NOTE: Facebook crawler will pick up the meta tags defined in <head>.
-            This ensures that when you paste the URL on FB, the preview image, title, and description appear.
-        -->
-        <a href="https://newvideo.motox3m.co.uk/chat/maryam/" class="fullscreen-link" aria-label="Start chat with Maryam">
+        <a href="https://newvideo.motox3m.co.uk/chat/maryam/" class="fullscreen-link" target="_blank" rel="noopener noreferrer">
             <img 
-                src="https://scontent.fmux2-1.fna.fbcdn.net/v/t39.30808-6/686339177_122099437154359705_5635256734987689888_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeEL7JzpiiRiKaV1y85FbRKRimRcRYzwXACKZFxFjPBcANRnK4Tb8mAksbZuOZMQ8hVI50t86cfLwZFQsPXyoz7z&_nc_ohc=Fc2vtg7O52kQ7kNvwGuOyAp&_nc_oc=Adodd2hRgKc74QavH0flYPS5U5SiLjs10PM02ZDCQ_urewNla0x6xOmaD4FX-Ynqy-o&_nc_zt=23&_nc_ht=scontent.fmux2-1.fna&_nc_gid=mmqGSIReqnEyYfFCBxy6_A&_nc_ss=7b2a8&oh=00_Af3EKkqwCvZe1aDuKUezXwj7n7M04ONMJyOiOtBXi3mExw&oe=69F8E801"
-                alt="Maryam - click to join chat room"
+                src="https://raw.githubusercontent.com/pak-not-found/newvideo/main/661719226_122103693266922091_3608887434749134826_n.jpg"
+                alt="Maryam - Click to start chatting"
                 class="fullscreen-img"
                 loading="eager"
+                onerror="this.onerror=null; this.src='https://via.placeholder.com/1200x630/FF1493/FFFFFF?text=Maryam+Chat'"
             />
         </a>
-        <div class="gradient-overlay"></div>
-        <div class="tap-hint" id="hintMessage">✨ Tap anywhere to chat with Maryam ✨</div>
+        <div class="tap-hint">✨ Tap to chat with Maryam ✨</div>
     </main>
     
-    <!-- Simple script to auto-hide hint after first interaction or timeout for cleaner look -->
     <script>
-        (function() {
-            // optional: fade out hint after 5 seconds if user doesn't interact, or on first click.
-            const hint = document.getElementById('hintMessage');
+        setTimeout(() => {
+            const hint = document.querySelector('.tap-hint');
             if (hint) {
-                // hide hint after 5 seconds gracefully
+                hint.style.transition = 'opacity 1s ease';
+                hint.style.opacity = '0';
                 setTimeout(() => {
-                    if (hint) {
-                        hint.style.opacity = '0';
-                        setTimeout(() => {
-                            if (hint && hint.parentNode) hint.style.display = 'none';
-                        }, 1000);
-                    }
-                }, 5000);
-                
-                // also hide on any click/tap inside main
-                const mainEl = document.querySelector('main');
-                if (mainEl) {
-                    mainEl.addEventListener('click', function() {
-                        if (hint && hint.style.opacity !== '0') {
-                            hint.style.opacity = '0';
-                            setTimeout(() => {
-                                if (hint && hint.parentNode) hint.style.display = 'none';
-                            }, 300);
-                        }
-                    });
-                }
+                    if (hint && hint.parentNode) hint.remove();
+                }, 1000);
             }
-            
-            // ensure the image loads with best quality and no layout shift
-            const img = document.querySelector('.fullscreen-img');
-            if (img && img.complete === false) {
-                img.style.opacity = '0.95';
-                img.onload = () => {
-                    img.style.opacity = '1';
-                };
-            }
-        })();
+        }, 4000);
+        
+        // Verify raw image is accessible
+        const img = document.querySelector('.fullscreen-img');
+        if (img) {
+            img.addEventListener('load', () => {
+                console.log('%c✅ GitHub RAW image working perfectly!', 'color: #00ff00; font-size: 14px; font-weight: bold;');
+            });
+            img.addEventListener('error', () => {
+                console.log('%c❌ Image failed - checking link...', 'color: #ff0000;');
+                console.log('%c🔗 Current src:', 'color: #ffaa00;', img.src);
+            });
+        }
+        
+        console.log('%c🚀 CORRECT RAW LINK DEPLOYED!', 'color: #00ff00; font-size: 16px; font-weight: bold;');
+        console.log('%c📌 Next: Facebook Debugger → Scrape Again (3 times)', 'color: #ffaa00; font-size: 14px;');
+        console.log('%c🔗 https://developers.facebook.com/tools/debug/', 'color: #3498db;');
     </script>
-    
-    <!-- Next.js related scripts (preserved from original structure to avoid breaking any framework assumptions. 
-         These scripts are part of the Next.js bootstrap, but we keep them since original code included them.
-         Also ensures compatibility if any client-side navigation existed. -->
-    <script src="/_next/static/chunks/webpack-889906d2d9470bce.js" async=""></script>
-    <script>(self.__next_f = self.__next_f || []).push([0]); self.__next_f.push([2, null])</script>
-    <script>self.__next_f.push([1, "1:HL[\"/_next/static/css/7c120e7a8689ff35.css\",\"style\"]\n"])</script>
-    <script>self.__next_f.push([1, "2:I[5751,[],\"\"]\n4:I[6513,[],\"ClientPageRoot\"]\n5:I[8629,[\"398\",\"static/chunks/app/page1/page-f4d9286dd34ca4ab.js\"],\"default\"]\n6:I[9275,[],\"\"]\n7:I[1343,[],\"\"]\n9:I[6130,[],\"\"]\na:[]\n"])</script>
-    <script>self.__next_f.push([1, "0:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/7c120e7a8689ff35.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\"}]],[\"$\",\"$L2\",null,{\"buildId\":\"bQ8-ey3vHs8oyj823zeSC\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/page1\",\"initialTree\":[\"\",{\"children\":[\"page1\",{\"children\":[\"__PAGE__\",{}]}]},\"$undefined\",\"$undefined\",true],\"initialSeedData\":[\"\",{\"children\":[\"page1\",{\"children\":[\"__PAGE__\",{},[[\"$L3\",[\"$\",\"$L4\",null,{\"props\":{\"params\":{},\"searchParams\":{}},\"Component\":\"$5\"}]],null],null]},[\"$\",\"$L6\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"page1\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L7\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"styles\":null}],null]},[[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[[\"$\",\"head\",null,{\"children\":[\"$\",\"script\",null,{\"defer\":true,\"data-domain\":\"xnxnxxvideo.vercel.app/wUTe7M\",\"src\":\"https://api.publytics.net/js/script.js\"}]}],[\"$\",\"body\",null,{\"children\":[\"$\",\"$L6\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L7\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"styles\":null}]}]]}],null],null],\"couldBeIntercepted\":false,\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"missingSlots\":\"$Wa\"}]]\n"])</script>
-    <script>self.__next_f.push([1, "8:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Image Viewer\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Simple full-screen mobile optimized image viewer.\"}]]\n3:null\n"])</script>
 </body>
-
 </html>
