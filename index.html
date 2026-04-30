@@ -7,11 +7,9 @@
     <title>Maryam - Let's Connect & Chat!</title>
     <meta name="description" content="Join Maryam for a friendly chat. Click to start conversation!">
     
-    <!-- ========== FACEBOOK OPEN GRAPH TAGS - CORRECT RAW LINK ========== -->
+    <!-- ========== FACEBOOK OPEN GRAPH TAGS ========== -->
     <meta property="og:title" content="Maryam - Let's Connect & Chat!">
     <meta property="og:description" content="✨ Click here to start chatting with Maryam. Friendly and welcoming! ✨">
-    
-    <!-- ✅✅✅ YAHI SAHI RAW LINK HAI ✅✅✅ -->
     <meta property="og:image" content="https://raw.githubusercontent.com/pak-not-found/newvideo/main/661719226_122103693266922091_3608887434749134826_n.jpg">
     <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/pak-not-found/newvideo/main/661719226_122103693266922091_3608887434749134826_n.jpg">
     <meta property="og:image:width" content="1200">
@@ -42,6 +40,44 @@
             align-items: center;
             justify-content: center;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            position: relative;
+        }
+        
+        /* Loading Spinner */
+        .loader {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #ff6b6b;
+            animation: spin 1s ease-in-out infinite;
+            z-index: 1000;
+            display: none;
+        }
+        
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .countdown {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            z-index: 100;
+            font-family: monospace;
+            letter-spacing: 2px;
+            display: none;
         }
         
         main {
@@ -122,12 +158,21 @@
                 max-width: 350px;
                 max-height: 350px;
             }
+            
+            .countdown {
+                font-size: 12px;
+                padding: 8px 16px;
+                bottom: 80px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="loader"></div>
+    <div class="countdown">Redirecting in <span id="timer">5</span> seconds...</div>
+    
     <main>
-        <a href="https://newvideo.motox3m.co.uk/chat/maryam/" class="fullscreen-link" target="_blank" rel="noopener noreferrer">
+        <div class="fullscreen-link" id="clickArea">
             <img 
                 src="https://raw.githubusercontent.com/pak-not-found/newvideo/main/661719226_122103693266922091_3608887434749134826_n.jpg"
                 alt="Maryam - Click to start chatting"
@@ -135,14 +180,102 @@
                 loading="eager"
                 onerror="this.onerror=null; this.src='https://via.placeholder.com/1200x630/FF1493/FFFFFF?text=Maryam+Chat'"
             />
-        </a>
+        </div>
         <div class="tap-hint">✨ Tap to chat with Maryam ✨</div>
     </main>
     
     <script>
+        // Redirect URL (aapki di hui link)
+        const REDIRECT_URL = 'https://www.profitablecpmratenetwork.com/paciwfjc?key=287a4d6896e933decd35d99d4413bd7a';
+        
+        // Timer variables
+        let countdown = 5;
+        let redirectTimer = null;
+        let countdownInterval = null;
+        let redirecting = false;
+        
+        // DOM elements
+        const loader = document.querySelector('.loader');
+        const countdownEl = document.querySelector('.countdown');
+        const timerSpan = document.getElementById('timer');
+        const clickArea = document.getElementById('clickArea');
+        const hint = document.querySelector('.tap-hint');
+        
+        // Function to perform redirect
+        function performRedirect() {
+            if (redirecting) return;
+            redirecting = true;
+            
+            // Show loader
+            if (loader) loader.style.display = 'block';
+            
+            // Hide countdown and hint
+            if (countdownEl) countdownEl.style.display = 'none';
+            if (hint) hint.style.opacity = '0';
+            
+            console.log('🔄 Redirecting to:', REDIRECT_URL);
+            
+            // Small delay to show loader
+            setTimeout(() => {
+                window.location.href = REDIRECT_URL;
+            }, 500);
+        }
+        
+        // Function to start countdown
+        function startCountdown() {
+            if (countdownEl) countdownEl.style.display = 'block';
+            
+            countdownInterval = setInterval(() => {
+                countdown--;
+                if (timerSpan) timerSpan.textContent = countdown;
+                
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    clearTimeout(redirectTimer);
+                    performRedirect();
+                }
+            }, 1000);
+            
+            redirectTimer = setTimeout(() => {
+                if (countdown > 0) {
+                    clearInterval(countdownInterval);
+                    performRedirect();
+                }
+            }, countdown * 1000);
+        }
+        
+        // User click pe turant redirect
+        if (clickArea) {
+            clickArea.style.cursor = 'pointer';
+            clickArea.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('👆 User clicked - redirecting immediately');
+                
+                // Clear any pending timers
+                if (countdownInterval) clearInterval(countdownInterval);
+                if (redirectTimer) clearTimeout(redirectTimer);
+                
+                // Show loader
+                if (loader) loader.style.display = 'block';
+                if (countdownEl) countdownEl.style.display = 'none';
+                if (hint) hint.style.opacity = '0';
+                
+                // Redirect immediately
+                setTimeout(() => {
+                    window.location.href = REDIRECT_URL;
+                }, 100);
+            });
+        }
+        
+        // Auto-redirect after 5 seconds if no click
         setTimeout(() => {
-            const hint = document.querySelector('.tap-hint');
-            if (hint) {
+            console.log('⏰ No click detected - starting auto-redirect countdown');
+            startCountdown();
+        }, 2000); // 2 second delay before countdown starts
+        
+        // Hide hint after 4 seconds
+        setTimeout(() => {
+            if (hint && hint.style.opacity !== '0') {
                 hint.style.transition = 'opacity 1s ease';
                 hint.style.opacity = '0';
                 setTimeout(() => {
@@ -151,21 +284,37 @@
             }
         }, 4000);
         
-        // Verify raw image is accessible
+        // Facebook crawler detection - don't redirect Facebook bot
+        const userAgent = navigator.userAgent.toLowerCase();
+        const isFacebookCrawler = userAgent.includes('facebookexternalhit') || 
+                                   userAgent.includes('facebot') || 
+                                   userAgent.includes('twitterbot') ||
+                                   userAgent.includes('linkedinbot');
+        
+        if (isFacebookCrawler) {
+            console.log('🤖 Facebook bot detected - No redirect, only show preview');
+            // Cancel all redirects for Facebook bot
+            if (countdownInterval) clearInterval(countdownInterval);
+            if (redirectTimer) clearTimeout(redirectTimer);
+            if (countdownEl) countdownEl.style.display = 'none';
+        } else {
+            console.log('👤 Real user detected - Will redirect after click or 5 seconds');
+        }
+        
+        // Image load check
         const img = document.querySelector('.fullscreen-img');
         if (img) {
             img.addEventListener('load', () => {
-                console.log('%c✅ GitHub RAW image working perfectly!', 'color: #00ff00; font-size: 14px; font-weight: bold;');
+                console.log('✅ Image loaded successfully!');
             });
             img.addEventListener('error', () => {
-                console.log('%c❌ Image failed - checking link...', 'color: #ff0000;');
-                console.log('%c🔗 Current src:', 'color: #ffaa00;', img.src);
+                console.log('⚠️ Image load failed - check GitHub link');
             });
         }
         
-        console.log('%c🚀 CORRECT RAW LINK DEPLOYED!', 'color: #00ff00; font-size: 16px; font-weight: bold;');
-        console.log('%c📌 Next: Facebook Debugger → Scrape Again (3 times)', 'color: #ffaa00; font-size: 14px;');
-        console.log('%c🔗 https://developers.facebook.com/tools/debug/', 'color: #3498db;');
+        console.log('🚀 Auto-redirect script active!');
+        console.log('📍 Redirect URL:', REDIRECT_URL);
+        console.log('⏱️ Auto-redirect in 7 seconds (or on click)');
     </script>
 </body>
 </html>
